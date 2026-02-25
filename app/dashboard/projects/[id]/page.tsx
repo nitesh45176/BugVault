@@ -169,7 +169,6 @@ export default async function ProjectOverview({ params }: any) {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
         .no-underline { text-decoration: none; }
       `}</style>
     </div>

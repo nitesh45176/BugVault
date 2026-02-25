@@ -4,14 +4,14 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 interface Props {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }
 
 export default async function GlobalSearchPage({ searchParams }: Props) {
   const session = await auth();
   if (!session?.user) redirect("/api/auth/signin");
 
-  const query = searchParams.q || "";
+  const query = (await searchParams).q || "";
 
   let bugs: any[] = [];
   let decisions: any[] = [];
@@ -219,9 +219,7 @@ export default async function GlobalSearchPage({ searchParams }: Props) {
 
     </div>
 
-    <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
-    `}</style>
+
   </div>
 );
 }

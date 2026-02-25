@@ -220,7 +220,6 @@ export default function NewBugPage() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
         @keyframes spin { to { transform: rotate(360deg); } }
       `}</style>
     </div>

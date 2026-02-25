@@ -4,19 +4,32 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import DeleteDecisionButton from "./DeleteDecisionButton";
 
-interface ParamsProps {
-  params: { bugId: string; id: string; decisionId: string };
-}
+type Props = {
+  params: Promise<{ id: string; decisionId: string }>;
+};
 
-export default async function DecisionDetailPage({ params }: ParamsProps) {
+export default async function DecisionDetailPage({ params }: Props) {
   const session = await auth();
+
   const { id, decisionId } = await params;
 
+  if (!session?.user?.id) {
+    redirect("/");
+  }
+
   const decision = await prisma.bug.findFirst({
-    where: { id: decisionId, project: { id, userId: session?.user.id } },
+    where: {
+      id: decisionId,
+      project: {
+        id,
+        userId: session.user.id,
+      },
+    },
   });
 
-  if (!decision) redirect(`/dashboard/projects/${id}/decisions`);
+  if (!decision) {
+    redirect(`/dashboard/projects/${id}/decisions`);
+  }
 
   const createdAt = new Date(decision.createdAt).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
@@ -107,7 +120,6 @@ export default async function DecisionDetailPage({ params }: ParamsProps) {
 
       </div>
 
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');`}</style>
     </div>
   );
 }

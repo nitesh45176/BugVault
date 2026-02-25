@@ -216,7 +216,6 @@ export default function LoginPage() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes float {
           0%, 100% { transform: translateY(0px); }

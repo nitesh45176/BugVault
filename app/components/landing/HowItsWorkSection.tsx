@@ -196,9 +196,7 @@ export default function HowItWorksSection() {
 
       </div>
 
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
-      `}</style>
+    
     </section>
   );
 }

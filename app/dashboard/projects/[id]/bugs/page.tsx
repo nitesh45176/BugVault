@@ -2,18 +2,24 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
-interface ParamsType {
-  params: { id: string };
-}
+type Props = {
+  params: Promise<{ id: string }>;
+};
 
-export default async function Bug({ params }: ParamsType) {
+export default async function Bug({ params }: Props) {
   const session = await auth();
   const { id } = await params;
 
   const bugs = await prisma.bug.findMany({
-    where: { projectId: id, userId: session?.user.id, entryType: "BUG" },
-    orderBy: { createdAt: "desc" },
-  });
+  where: {
+    projectId: id,
+    entryType: "BUG",
+    project: {
+      userId: session?.user?.id,
+    },
+  },
+  orderBy: { createdAt: "desc" },
+});
 
   return (
     <div className="min-h-screen bg-black ">
@@ -143,9 +149,18 @@ export default async function Bug({ params }: ParamsType) {
 
       </div>
 
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
-      `}</style>
+     
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+

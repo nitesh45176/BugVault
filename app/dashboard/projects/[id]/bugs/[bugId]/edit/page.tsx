@@ -3,26 +3,41 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import EditBugForm from "./EditBugForm";
 
-interface PageProps {
-  params: { id: string; bugId: string };
-}
+type Props = {
+  params: Promise<{ id: string; bugId: string }>;
+};
 
-export default async function EditBugPage({ params }: PageProps) {
+export default async function EditBugPage({ params }: Props) {
   const session = await auth();
 
-  if (!session?.user) redirect("/api/auth/signin");
+  if (!session?.user?.id) {
+    redirect("/api/auth/signin");
+  }
+
+  const { id, bugId } = await params;
 
   const bug = await prisma.bug.findFirst({
     where: {
-      id: params.bugId,
-      project: { id: params.id, userId: session.user.id },
+      id: bugId,
+      project: {
+        id,
+        userId: session.user.id,
+      },
     },
   });
 
-  if (!bug) redirect("/dashboard");
+  if (!bug) {
+    redirect("/dashboard");
+  }
 
   return (
-    <div style={{ backgroundColor: "#0a0e1a", minHeight: "100vh", padding: "40px 24px" }}>
+    <div
+      style={{
+        backgroundColor: "#0a0e1a",
+        minHeight: "100vh",
+        padding: "40px 24px",
+      }}
+    >
       <EditBugForm bug={bug} />
     </div>
   );

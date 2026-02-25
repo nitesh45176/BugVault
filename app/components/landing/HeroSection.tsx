@@ -245,7 +245,7 @@ export default function HeroSection() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+       
 
         @keyframes blink {
           0%, 100% { opacity: 1; }

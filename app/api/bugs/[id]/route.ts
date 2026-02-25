@@ -58,7 +58,9 @@ export async function PUT(req: Request, {params}: {params: Promise<{id:string}>}
    const bugs = await prisma.bug.findFirst({
     where:{
        id: (await params).id,
-       userId: session.user.id
+       project: {
+      userId: session.user.id,
+    },
     }
    })
    if(!bugs){

@@ -1,10 +1,10 @@
 @import "tailwindcss";
-
+/* @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap'); */
 /* ── Tailwind v4 dark mode ── */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
 
 /* ── BASE ── */
 *, *::before, *::after { box-sizing: border-box; }

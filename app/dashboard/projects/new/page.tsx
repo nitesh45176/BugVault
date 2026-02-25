@@ -229,7 +229,6 @@ export default function NewProject() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
         input::placeholder, textarea::placeholder { color: ${isLight ? "#94a3b8" : "#4b5563"}; }
       `}</style>
     </div>
