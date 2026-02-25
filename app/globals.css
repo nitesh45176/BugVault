@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Tailwind v4 dark mode ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
+/* ── BASE ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── DARK MODE (default) ── */
+html {
+  background-color: #000 !important;
+  color: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── LIGHT MODE ── */
+html.light {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html.light body {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
 }
+
+/* All sections bg */
+html.light section {
+  background-color: #f1f5f9 !important;
+}
+
+/* Black backgrounds → light gray */
+html.light .bg-black,
+html.light [class*="bg-black"] {
+  background-color: #f1f5f9 !important;
+}
+
+/* Dark card backgrounds */
+html.light [style*="background-color: rgb(17, 24, 39)"],
+html.light [style*="background: rgb(17, 24, 39)"] {
+  background-color: #e2e8f0 !important;
+}
+
+/* Text colors */
+html.light .text-white { color: #0f172a !important; }
+html.light .text-gray-400 { color: #475569 !important; }
+html.light .text-gray-500 { color: #64748b !important; }
+html.light .text-gray-600 { color: #94a3b8 !important; }
+html.light .text-gray-700 { color: #94a3b8 !important; }
+
+/* Borders */
+html.light [class*="border-white"] { border-color: rgba(0,0,0,0.1) !important; }
+
+/* Navbar pill */
+html.light nav {
+  background-color: rgba(241,245,249,0.95) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Cards with inline bg styles (the mock UI cards) */
+html.light [style*="background-color: rgba(17"] {
+  background-color: rgba(226,232,240,0.9) !important;
+}
+
+/* Dark inline backgrounds used in cards */
+html.light [style*="#0d1117"],
+html.light [style*="0d1117"] {
+  background-color: #e2e8f0 !important;
+}
+
+/* Subtle card backgrounds */
+html.light .bg-white\/\[0\.02\] { background-color: rgba(0,0,0,0.04) !important; }
+html.light .bg-white\/\[0\.03\] { background-color: rgba(0,0,0,0.05) !important; }
+html.light .bg-white\/\[0\.035\] { background-color: rgba(0,0,0,0.06) !important; }
+html.light .bg-white\/\[0\.04\] { background-color: rgba(0,0,0,0.06) !important; }
+html.light .bg-black\/40 { background-color: rgba(0,0,0,0.06) !important; }
+html.light .bg-black\/50 { background-color: rgba(0,0,0,0.06) !important; }
+
+/* Border utilities */
+html.light .border-white\/\[0\.05\] { border-color: rgba(0,0,0,0.07) !important; }
+html.light .border-white\/\[0\.06\] { border-color: rgba(0,0,0,0.08) !important; }
+html.light .border-white\/\[0\.07\] { border-color: rgba(0,0,0,0.09) !important; }
+html.light .border-white\/\[0\.08\] { border-color: rgba(0,0,0,0.1) !important; }
+html.light .border-white\/\[0\.1\]  { border-color: rgba(0,0,0,0.12) !important; }
+html.light .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+
+/* Stats strip dividers */
+html.light .bg-white\/10 { background-color: rgba(0,0,0,0.1) !important; }
+html.light .bg-white\/\[0\.06\] { background-color: rgba(0,0,0,0.06) !important; }
+
+/* ── Hero mock card (hardcoded Tailwind bg classes) ── */
+html.light .bg-\[\#111827\]\/90,
+html.light .bg-\[\#111827\] { background-color: #e8edf5 !important; }
+
+html.light .bg-\[\#0d1117\] { background-color: #dde3ee !important; }
+
+/* Floating decision card text */
+html.light .bg-\[\#111827\] .text-white { color: #0f172a !important; }
+html.light .bg-\[\#111827\] .text-gray-600 { color: #94a3b8 !important; }
+
+/* Fix card border in light */
+html.light .border-white\/\[0\.08\] { border-color: rgba(0,0,0,0.1) !important; }
+
+/* Glow behind card — tone down in light */
+html.light .bg-blue-600\/10 { background-color: rgba(37,99,235,0.05) !important; }
+
+/* ── LIGHT MODE TEXT FIXES (detail/form pages) ── */
+html.light .text-gray-300 { color: #1e293b !important; }
+html.light .text-gray-400 { color: #475569 !important; }
+html.light .text-gray-500 { color: #475569 !important; }
+html.light .text-gray-600 { color: #64748b !important; }
+html.light .text-gray-700 { color: #94a3b8 !important; }
+
+/* Card backgrounds — white in light mode */
+html.light .bg-white\/\[0\.02\] { background-color: #ffffff !important; }
+html.light .bg-white\/\[0\.03\] { background-color: #f8faff !important; }
+html.light .bg-white\/\[0\.035\] { background-color: #f8faff !important; }
+html.light .bg-white\/\[0\.04\] { background-color: #f1f5f9 !important; }
+html.light .bg-white\/\[0\.05\] { background-color: #f1f5f9 !important; }
+
+/* Code/pre blocks */
+html.light .bg-black\/30 { background-color: #e2e8f0 !important; }
+html.light .bg-black\/40 { background-color: #e2e8f0 !important; }
+html.light .bg-black\/50 { background-color: #e2e8f0 !important; }
+html.light pre { color: #1e293b !important; }
+
+/* Inputs in light mode */
+html.light input,
+html.light textarea {
+  background-color: #f8faff !important;
+  color: #0f172a !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+html.light input::placeholder,
+html.light textarea::placeholder { color: #94a3b8 !important; }
+
+/* Error message red stays red */
+html.light .text-red-400 { color: #dc2626 !important; }
+html.light .text-emerald-400 { color: #059669 !important; }
+html.light .text-violet-400 { color: #7c3aed !important; }
+html.light .text-amber-400 { color: #d97706 !important; }
+html.light .text-blue-400 { color: #2563eb !important; }
