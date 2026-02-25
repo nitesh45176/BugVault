@@ -10,8 +10,9 @@ type Props = {
 
 export default async function BugDetailPage({ params }: Props) {
   const session = await auth();
+  console.log("SESSION:", session);
 
-  if (!session?.user?.id) {
+  if (!session?.user) {
     redirect("/api/auth/signin");
   }
 
@@ -26,6 +27,7 @@ export default async function BugDetailPage({ params }: Props) {
       },
     },
   });
+  console.log("BUG:", bug);
 
   if (!bug) {
     redirect("/dashboard");
