@@ -53,7 +53,7 @@ export default async function Bug({ params }: Props) {
               className="text-white font-extrabold leading-tight mb-1"
               style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)" }}
             >
-              🐞 Bugs
+               Bugs
             </h1>
             <p className="text-gray-500 text-sm">
               {bugs.length} bug{bugs.length !== 1 ? "s" : ""} logged in this project

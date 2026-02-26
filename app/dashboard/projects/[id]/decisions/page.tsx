@@ -29,7 +29,7 @@ export default async function DecisionsPage({ params }: any) {
           <div>
             <p className="text-[10px] uppercase tracking-[0.14em] text-violet-400 font-semibold mb-1.5">Decision Log</p>
             <h1 className="text-white font-extrabold leading-tight mb-1" style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)" }}>
-              📝 Decisions
+               Decisions
             </h1>
             <p className="text-gray-500 text-sm">{decisions.length} decision{decisions.length !== 1 ? "s" : ""} logged in this project</p>
           </div>

@@ -81,7 +81,7 @@ export default function NewBugPage() {
             className="text-white font-extrabold text-2xl sm:text-3xl leading-tight mb-1"
             style={{ fontFamily: "'Syne', sans-serif" }}
           >
-            🐛 Log a Bug
+             Log a Bug
           </h1>
           <p className="text-gray-500 text-sm">
             Document it clearly so future you always has the context.

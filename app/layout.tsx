@@ -22,7 +22,7 @@ const syne = Syne({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${syne.variable} bg-black`}>
+      <body className={`${syne.variable} bg-black lg:ml-56`}>
         <Providers>
           {children}
         </Providers>

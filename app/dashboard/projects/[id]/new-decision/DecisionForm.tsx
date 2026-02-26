@@ -57,7 +57,7 @@ export default function DecisionForm() {
         <div className="mb-7">
           <p className="text-[10px] uppercase tracking-[0.14em] text-violet-400 font-semibold mb-1.5">New Entry</p>
           <h1 className="text-white font-extrabold text-2xl sm:text-3xl leading-tight mb-1" style={{ fontFamily: "'Syne', sans-serif" }}>
-            📝 Log a Decision
+             Log a Decision
           </h1>
           <p className="text-gray-500 text-sm">Document architectural choices, tradeoffs, and important notes.</p>
         </div>
@@ -79,7 +79,7 @@ export default function DecisionForm() {
             {/* Why */}
             <div>
               <label className="block text-[10px] uppercase tracking-[0.1em] text-violet-400 font-semibold mb-2">
-                🔍 Why was this decision made? <span className="text-red-400">*</span>
+                 Why was this decision made? <span className="text-red-400">*</span>
               </label>
               <textarea
                 name="context"
@@ -92,7 +92,7 @@ export default function DecisionForm() {
             {/* Code / Explanation */}
             <div>
               <label className="block text-[10px] uppercase tracking-[0.1em] text-emerald-400 font-semibold mb-2">
-                ✅ Code Snippet / Explanation <span className="text-red-400">*</span>
+                 Code Snippet / Explanation <span className="text-red-400">*</span>
               </label>
               <textarea
                 name="solution"
