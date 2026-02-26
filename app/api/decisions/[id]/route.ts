@@ -18,7 +18,7 @@ export async function DELETE(
     );
   }
 
-  const id = context.params.id;
+  const { id } = context.params;
 
   const project = await prisma.project.findFirst({
     where: {
@@ -34,12 +34,10 @@ export async function DELETE(
     );
   }
 
-  // 🔥 Delete child bugs first
   await prisma.bug.deleteMany({
     where: { projectId: id },
   });
 
-  // 🔥 Then delete project
   await prisma.project.delete({
     where: { id },
   });

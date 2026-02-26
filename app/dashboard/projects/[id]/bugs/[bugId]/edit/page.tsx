@@ -10,7 +10,7 @@ type Props = {
 export default async function EditBugPage({ params }: Props) {
   const session = await auth();
 
-  if (!session?.user?.id) {
+  if (!session?.user) {
     redirect("/api/auth/signin");
   }
 
