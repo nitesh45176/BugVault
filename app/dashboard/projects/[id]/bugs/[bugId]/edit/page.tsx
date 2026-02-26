@@ -9,36 +9,15 @@ type Props = {
 
 export default async function EditBugPage({ params }: Props) {
   const session = await auth();
-
-  if (!session?.user) {
-    redirect("/api/auth/signin");
-  }
+  if (!session?.user) redirect("/api/auth/signin");
 
   const { id, bugId } = await params;
 
   const bug = await prisma.bug.findFirst({
-    where: {
-      id: bugId,
-      project: {
-        id,
-        userId: session.user.id,
-      },
-    },
+    where: { id: bugId, project: { id, userId: session.user.id } },
   });
 
-  if (!bug) {
-    redirect("/dashboard");
-  }
+  if (!bug) redirect("/dashboard");
 
-  return (
-    <div
-      style={{
-        backgroundColor: "#0a0e1a",
-        minHeight: "100vh",
-        padding: "40px 24px",
-      }}
-    >
-      <EditBugForm bug={bug} />
-    </div>
-  );
+  return <EditBugForm bug={bug} />;
 }
