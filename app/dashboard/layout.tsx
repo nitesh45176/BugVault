@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
-import DashboardSidebarWrapper from "../components/dashboard/SidebarWrapper";
 import { redirect } from "next/navigation";
+import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 
 export default async function DashboardLayout({
   children,
@@ -15,10 +15,10 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
-      <DashboardSidebarWrapper />
+      <DashboardSidebar />
 
-      {/* Remove fixed margin hack */}
-      <main className="lg:pl-56 min-h-screen w-full">
+      {/* Desktop offset for sidebar */}
+      <main className="lg:pl-64 pt-14 lg:pt-0 min-h-screen w-full">
         {children}
       </main>
     </div>
