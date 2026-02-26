@@ -5,10 +5,9 @@ import { NextResponse } from "next/server";
 interface ParamsType{
     params: Promise<{id: string}>
 }
-
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   const session = await auth();
 
@@ -19,32 +18,34 @@ export async function DELETE(
     );
   }
 
-  const { id } = params;
+  const id = context.params.id;
 
-  const decision = await prisma.bug.findFirst({
+  const project = await prisma.project.findFirst({
     where: {
       id,
-      entryType: "DECISION",
-      project: {
-        userId: session.user.id,
-      },
+      userId: session.user.id,
     },
   });
 
-  if (!decision) {
+  if (!project) {
     return NextResponse.json(
-      { error: "Decision not found" },
+      { error: "Project not found" },
       { status: 404 }
     );
   }
 
-  await prisma.bug.delete({
+  // 🔥 Delete child bugs first
+  await prisma.bug.deleteMany({
+    where: { projectId: id },
+  });
+
+  // 🔥 Then delete project
+  await prisma.project.delete({
     where: { id },
   });
 
   return NextResponse.json({ success: true });
 }
-
 export async function PUT(req: Request, {params}:ParamsType){
    const session = await auth()
 
