@@ -8,32 +8,32 @@ interface ParamsType{
 
 export async function DELETE(
   req: Request,
-  { params }: ParamsType
+  { params }: { params: { id: string } }
 ) {
   const session = await auth();
 
-  if (!session?.user) {
+  if (!session?.user?.id) {
     return NextResponse.json(
       { error: "Unauthorized" },
       { status: 401 }
     );
   }
 
-  const { id } = await params; 
+  const { id } = params;
 
   const decision = await prisma.bug.findFirst({
     where: {
-      id: id,
+      id,
+      entryType: "DECISION",
       project: {
         userId: session.user.id,
       },
-      entryType: "DECISION"
     },
   });
 
   if (!decision) {
     return NextResponse.json(
-      { error: "decision not found" },
+      { error: "Decision not found" },
       { status: 404 }
     );
   }

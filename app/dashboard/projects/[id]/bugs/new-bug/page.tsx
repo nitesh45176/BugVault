@@ -33,7 +33,7 @@ export default function NewBugPage() {
         screenshotUrl = uploadData.url;
       }
 
-      await fetch("/ap/bugs", {
+      await fetch("/api/bugs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, errorMessage, context, rootCause, solution, projectId, screenshotUrl }),
